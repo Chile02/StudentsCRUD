@@ -1,0 +1,59 @@
+﻿@page "/"
+
+<PageTitle>Students</PageTitle>
+
+<h1>Students</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Age</th>
+      <th scope="col">DOB</th>
+      <th scope="col">Class</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach(var student in students )
+        {
+            <tr>
+                <td>@student.Id</td>
+                <td>@student.Name</td>
+                <td>@student.Age</td>
+                <td>@student.DOB.ToShortDateString()</td>
+                <td>@student.Classes</td>
+                <td>
+                    <button type="button" class="btn btn-outline-primary">
+                        Edit
+                        </button>
+                </td>
+            </tr>
+        }
+  
+  </tbody>
+</table>
+
+@code{
+    private Models.Students[]  students = new[]
+    {
+        new Models.Students()
+        {
+            Id = 1,
+            Name = "Chile Blessings",
+            Age = 19,
+            DOB =  new DateTime(2001, 2, 2),
+            Classes =  "A"
+        },
+
+        new Models.Students()
+        {
+            Id = 2,
+            Name = "Robert Mwandira",
+            Age = 29,
+            DOB =  new DateTime(2001, 8, 2),
+            Classes =  "A"
+        }
+    };
+}

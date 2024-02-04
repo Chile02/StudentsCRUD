@@ -4,7 +4,13 @@
 
 <h1>Students</h1>
 
-<table class="table">
+@if(students is null)
+{
+  <p><em>Loading.......</em></p>
+}
+else
+{
+  <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -35,25 +41,14 @@
   </tbody>
 </table>
 
-@code{
-    private Models.Students[]  students = new[]
-    {
-        new Models.Students()
-        {
-            Id = 1,
-            Name = "Chile Blessings",
-            Age = 19,
-            DOB =  new DateTime(2001, 2, 2),
-            Classes =  "A"
-        },
+}
 
-        new Models.Students()
+
+@code{
+    private Models.Students[]? students;
+        protected override void OnInitialized()
         {
-            Id = 2,
-            Name = "Robert Mwandira",
-            Age = 29,
-            DOB =  new DateTime(2001, 8, 2),
-            Classes =  "A"
+            students = StudentClient.GetStudents();
         }
-    };
+
 }
